@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="indigo lighten-3">
+  <head>
+  	<meta charset="utf-8">
+    <title>ChopdeyDashboard</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <div class="hide-on-large-only">
+      <nav>
+        <div class="nav-wrapper indigo lighten-1">
+          <a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
+            <i class="material-icons">menu</i>
+          </a>
+          <a href="#" class="brand-logo center">
+            <img class="responsive-img" src=<%= image_url('logo-c.svg') %>>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <header>
+      <ul id="nav-mobile" class="side-nav fixed indigo lighten-1">
+        <li class="logo"><a id="logo-container" href="index.html" class="brand-logo">
+          <object id="front-page-logo" type="image/svg+xml" data=<%= image_url('logo-c.svg') %>>Your browser does not support SVG</object></a>
+        </li>
+        <% if user_signed_in? %>
+          <li class="logo"><a id="logo-container" href="index.html" class="brand-logo">
+            <object id="front-page-logo" type="image/svg+xml" data=<%= current_user.image %>>Your browser does not support SVG</object></a>
+          </li>
+          <a href="" class="waves-effect waves-light yellow-text text-darken-2"><%= current_user.name %></a>
+        <% end %>
+        <li class="bold">
+          <a href="about.html" class="waves-effect waves-light yellow-text text-darken-2">About</a>
+        </li>
+        <li class="bold">
+          <a href="getting-started.html" class="waves-effect waves-light yellow-text text-darken-2">Getting Started</a>
+        </li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-light yellow-text text-darken-2">CSS</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="color.html">Color</a></li>
+                  <li><a href="grid.html">Grid</a></li>
+                  <li><a href="helpers.html">Helpers</a></li>
+                  <li><a href="media-css.html">Media</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-light yellow-text text-darken-2">Components</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="badges.html">Badges</a></li>
+                  <li><a href="buttons.html">Buttons</a></li>
+                  <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+                  <li><a href="cards.html">Cards</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-light yellow-text text-darken-2">JavaScript</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="carousel.html">Carousel</a></li>
+                  <li><a href="collapsible.html">Collapsible</a></li>
+                  <li><a href="dialogs.html">Dialogs</a></li>
+                  <li><a href="dropdown.html">Dropdown</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold"><a href="mobile.html" class="waves-effect waves-light yellow-text text-darken-2">Mobile</a></li>
+        <li class="bold"><a href="showcase.html" class="waves-effect waves-light yellow-text text-darken-2">Showcase</a></li>
+        <li class="bold"><a href="themes.html" class="waves-effect waves-light yellow-text text-darken-2">Themes</a></li>
+      </ul>
+    </header>
+    <main>
+      <div class="container" style="width: 100%;">
+        <div class="row teal" style="margin: 0 auto; padding-top: 1px;">
+          <h2 class="center-on-small-only center-align">ChopSuey</h2>
+        </div>
+        <div class="divider"></div>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

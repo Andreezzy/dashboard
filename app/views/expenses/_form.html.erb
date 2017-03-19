@@ -1,0 +1,57 @@
+<%= form_for(expense) do |f| %>
+  <% if expense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+
+      <ul>
+      <% expense.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field input-field">
+    <%= f.label :expense_type_id %>
+    <%= f.select(:expense_type_id, options_from_collection_for_select(ExpenseType.all, :id, :description), {:prompt => 'Please Choose'}, :class => "") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pay_type %>
+    <%= f.select :pay_type, :collection => Expense.pay_types.map { |w,k| [w.humanize, w] } %>
+  </div>
+
+  <%= f.fields_for :price do |ff| %>
+    <div class="field">
+      <%= ff.label :money %>
+      <%= ff.select :money, :collection => Price.money.map { |w,k| [w.humanize, w] } %>
+    </div>
+    <div class="field">
+      <%= ff.label :total %>
+      <%= ff.number_field :total, value: (expense.price.show_total), :step => 'any' %>
+    </div>
+    <div class="field">
+      <%= ff.label :dolar_price %>
+      <%= ff.number_field :dolar_price, value: (expense.price.show_dolar_price), :step => 'any' %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date_create %>
+    <%= f.date_field :date_create, type: "date", class: "datepicker" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hour_create %>
+    <%= f.time_field :hour_create, type: "time", class: "timepicker", id: "timepicker_ampm_dark" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

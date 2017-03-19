@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  money: 1
+  total: 1
+  dolar_price: 1
+
+two:
+  money: 1
+  total: 1
+  dolar_price: 1
