@@ -1,4 +1,5 @@
 class OmniauthCallbacksController < ApplicationController
+	skip_before_filter :authenticate_user!, only: :facebook
   def facebook
 		@user = User.from_omniauth(request.env["omniauth.auth"])
 
